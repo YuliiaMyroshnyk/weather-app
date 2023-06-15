@@ -13,13 +13,14 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/8262e0394d.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="container">
       <div class="search">
-        <label for="introduction">
-          Do you want to know what the weather is like in your city?
-        </label>
         <form>
           <input
             type="text"
@@ -27,31 +28,32 @@
             autofocus="on"
             id="city-search-input"
           />
-
-          <input type="submit" value="Search" />
-          <button id="current-weather-button">Current location</button>
+          <input type="submit" value="Search" class="search-button" />
+          <button id="current-weather-button">
+            Location
+            <i class="fa-solid fa-location-dot" style="color: #924949"></i>
+          </button>
         </form>
       </div>
       <h2 id="currentCity">Alton</h2>
-      <h3 id="timeToday"></h3>
+
+      <h3 id="currentTime"></h3>
       <div class="weather-today">
         <div class="row">
-          <div class="col">
-            <div class="row">
-              <div class="col-md-auto">
-                <img src="images/cloud_sun.png" />
-              </div>
-              <div class="col">
-                <span class="currentTemp" id="currentTemp">17</span>°C
-
-                <br />
-                Wind: <span id="currentWind"> 5 </span>km/h
-                <br />
-                Humidity: <span id="currentHumidity">50</span>%
-                <br />
-                Real feel: <span id="currentFeel">34</span>°C
-              </div>
-            </div>
+          <div class="col-sm-6">
+            <img src="images/cloud_sun.png" /><span
+              class="currentTemp"
+              id="currentTemp"
+              >17</span
+            >°C
+          </div>
+          <div class="col-sm-6">
+            <br />
+            Wind: <span id="currentWind"> 5 </span>km/h
+            <br />
+            Humidity: <span id="currentHumidity">50</span>%
+            <br />
+            Real feel: <span id="currentFeel">34</span>°C
           </div>
         </div>
       </div>
