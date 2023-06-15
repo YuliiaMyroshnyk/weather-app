@@ -1,0 +1,28 @@
+label {
+  display: block;
+}
+
+img {
+  width: 100px;
+}
+
+.card-img-top {
+  display: block;
+  margin: 0 auto;
+  width: 70px;
+}
+
+.container {
+  display: block;
+  margin: 0 auto;
+  background: whitesmoke;
+  width: 65%;
+  border: 2px solid #302920;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px rgba(48, 41, 32, 0.4);
+  color: #302920;
+}
+
+.rain-drop {
+  width: 15px;
+}
