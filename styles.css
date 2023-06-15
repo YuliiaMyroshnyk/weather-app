@@ -26,3 +26,9 @@ img {
 .rain-drop {
   width: 15px;
 }
+
+.open-source {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+}
