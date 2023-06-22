@@ -42,20 +42,30 @@
         </form>
       </div>
       <h1 id="currentCity">Alton</h1>
+      <h4 id="country">United Kingdom of Great Britain and Northern Ireland</h4>
       <ul>
         <li id="currentTime"></li>
-        <li id="sky">Clear</li>
+        <li id="description">Clear</li>
       </ul>
       <div class="weather-today">
         <div class="row">
-          <div class="col" id="todayTemp">
-            <img src="images/cloud_sun.png" /><span
-              class="currentTemp"
-              id="currentTemp"
-              >17</span
-            >°C
+          <div class="col-6" id="todayTemp">
+            <div class="currentWeather">
+              <img
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+                class="float-start"
+                id="icon"
+              />
+              <div class="float-start">
+                <strong id="currentTemp">17</strong>
+                <span class="units"
+                  ><a href="#" id="celsius-link" class="active">°C</a> |
+                  <a href="#" id="fahrenheit-link">°F</a></span
+                >
+              </div>
+            </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-6">
             <br />
             Wind: <span id="currentWind"> 5 </span>km/h
             <br />
