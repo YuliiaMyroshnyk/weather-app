@@ -37,6 +37,9 @@ function displayWheatherCondition(response) {
   document.querySelector("#currentFeel").innerHTML = Math.round(
     response.data.temperature.feels_like
   );
+
+  celciusTemperature = response.data.temperature.current;
+
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
@@ -52,9 +55,6 @@ function search(event) {
   axios.get(apiUrl).then(displayWheatherCondition);
 }
 
-let form = document.querySelector("form");
-form.addEventListener("submit", search);
-
 function showPosition(position) {
   let apiKey = "5ccco0ca11b8e4f4e0fbtd4305206aef";
   let lat = position.coords.latitude;
@@ -65,26 +65,60 @@ function showPosition(position) {
 
 function showTemp(response) {
   document.querySelector("#description").innerHTML =
-    response.data.condition.description.toUpperCase;
-  let temp = Math.round(response.data.temperature.current);
-  let currentWeather = document.querySelector("#currentTemp");
-  currentWeather.innerHTML = `${temp} `;
-  let currentCity = document.querySelector("#currentCity");
-  currentCity.innerHTML = `${response.data.city}`;
+    response.data.condition.description;
+  document.querySelector("#currentTemp").innerHTML = Math.round(
+    response.data.temperature.current
+  );
+  document.querySelector("#currentCity").innerHTML = response.data.city;
   document.querySelector("#country").innerHTML = response.data.country;
-  let wind = Math.round(response.data.wind.speed);
-  let currentWind = document.querySelector("#currentWind");
-  currentWind.innerHTML = ` ${wind}`;
-  let humidity = Math.round(response.data.temperature.humidity);
-  let currentHumidity = document.querySelector("#currentHumidity");
-  currentHumidity.innerHTML = ` ${humidity}`;
-  let realFeel = Math.round(response.data.temperature.feels_like);
-  let currentFeel = document.querySelector("#currentFeel");
-  currentFeel.innerHTML = ` ${realFeel}`;
+  document.querySelector("#currentWind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
+  document.querySelector("#currentHumidity").innerHTML = Math.round(
+    response.data.temperature.humidity
+  );
+  document.querySelector("#currentFeel").innerHTML = Math.round(
+    response.data.temperature.feels_like
+  );
 }
 
 function currentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
+
+function showFahrenheitTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#currentTemp");
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+
+  let fahrenheitTemp = (celciusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
+}
+
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#currentTemp");
+
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+
+  temperatureElement.innerHTML = Math.round(celciusTemperature);
+}
+
+let celciusTemperature = null;
+
 let currentButton = document.querySelector("#current-weather-button");
 currentButton.addEventListener("click", currentPosition);
+
+let form = document.querySelector("form");
+form.addEventListener("submit", search);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemp);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemp);
+
+search("London");
