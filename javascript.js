@@ -55,14 +55,6 @@ function search(event) {
   axios.get(apiUrl).then(displayWheatherCondition);
 }
 
-function showPosition(position) {
-  let apiKey = "5ccco0ca11b8e4f4e0fbtd4305206aef";
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
-  axios.get(`${apiUrl}`).then(showTemp);
-}
-
 function showTemp(response) {
   document.querySelector("#description").innerHTML =
     response.data.condition.description;
@@ -80,6 +72,14 @@ function showTemp(response) {
   document.querySelector("#currentFeel").innerHTML = Math.round(
     response.data.temperature.feels_like
   );
+}
+
+function showPosition(position) {
+  let apiKey = "5ccco0ca11b8e4f4e0fbtd4305206aef";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+  axios.get(`${apiUrl}`).then(showTemp);
 }
 
 function currentPosition() {
