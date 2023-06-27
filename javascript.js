@@ -49,8 +49,13 @@ function displayWheatherCondition(response) {
 
 function search(event) {
   event.preventDefault();
-  let apiKey = "5ccco0ca11b8e4f4e0fbtd4305206aef";
   let city = document.querySelector("#city-search-input").value;
+
+  searchCity(city);
+}
+
+function searchCity(city) {
+  let apiKey = "5ccco0ca11b8e4f4e0fbtd4305206aef";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWheatherCondition);
 }
@@ -121,4 +126,4 @@ fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
 
-search("London");
+searchCity("London");
