@@ -20,6 +20,36 @@ if (minutes < 10) {
 }
 dayTime.innerHTML = `${day}, ${hours}:${minutes}`;
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+
+  let forecastHTML = `<div class="row">`;
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col">
+            <div class="weather-forecast-date">${day}</div>
+            <div class="forecast-humidity">
+              <img src="images/rain_drop.png" class="rain-drop" /> 75%
+            </div>
+            <img
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+            />
+
+            <div class="weather-forecast-temperatures">
+              <span class="weather-forecast-temperature-max"> 18° </span>
+              <span class="weather-forecast-temperature-min"> 12° </span>
+            </div>
+          </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayWheatherCondition(response) {
   document.querySelector("#description").innerHTML =
     response.data.condition.description;
@@ -127,3 +157,4 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
 
 searchCity("London");
+displayForecast();
