@@ -1,5 +1,7 @@
 let currentDate = new Date();
+
 let dayTime = document.querySelector("#currentTime");
+
 let days = [
   "Sunday",
   "Monday",
@@ -9,45 +11,76 @@ let days = [
   "Friday",
   "Saturday",
 ];
+
 let day = days[currentDate.getDay()];
+
 let hours = currentDate.getHours();
 if (hours < 10) {
   hours = `0${hours}`;
 }
+
 let minutes = currentDate.getMinutes();
 if (minutes < 10) {
   minutes = `0${minutes}`;
 }
 dayTime.innerHTML = `${day}, ${hours}:${minutes}`;
 
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+  return days[day];
+}
+
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
             <div class="col">
-            <div class="weather-forecast-date">${day}</div>
+            <div class="weather-forecast-date">${formatDay(
+              forecastDay.time
+            )}</div>
             <div class="forecast-humidity">
-              <img src="images/rain_drop.png" class="rain-drop" /> 75%
+              <img src="images/rain_drop.png" class="rain-drop" /><span class="forecast-humidity"> ${Math.round(
+                forecastDay.temperature.humidity
+              )}° </span>
             </div>
             <img
-              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                forecastDay.condition.icon
+              }.png"
             />
 
             <div class="weather-forecast-temperatures">
-              <span class="weather-forecast-temperature-max"> 18° </span>
-              <span class="weather-forecast-temperature-min"> 12° </span>
+              <span class="weather-forecast-temperature-max"> ${Math.round(
+                forecastDay.temperature.maximum
+              )}° </span>
+              <span class="weather-forecast-temperature-min"> ${Math.round(
+                forecastDay.temperature.minimum
+              )}° </span>
             </div>
           </div>`;
+    }
   });
+
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "5ccco0ca11b8e4f4e0fbtd4305206aef";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayWheatherCondition(response) {
@@ -75,6 +108,8 @@ function displayWheatherCondition(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+
+  getForecast(response.data.coordinates);
 }
 
 function search(event) {
@@ -90,7 +125,7 @@ function searchCity(city) {
   axios.get(apiUrl).then(displayWheatherCondition);
 }
 
-function showTemp(response) {
+function showWeatherLocation(response) {
   document.querySelector("#description").innerHTML =
     response.data.condition.description;
   document.querySelector("#currentTemp").innerHTML = Math.round(
@@ -107,6 +142,8 @@ function showTemp(response) {
   document.querySelector("#currentFeel").innerHTML = Math.round(
     response.data.temperature.feels_like
   );
+
+  getForecast(response.data.coordinates);
 }
 
 function showPosition(position) {
@@ -114,7 +151,7 @@ function showPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
-  axios.get(`${apiUrl}`).then(showTemp);
+  axios.get(`${apiUrl}`).then(showWeatherLocation);
 }
 
 function currentPosition() {
@@ -157,4 +194,3 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
 
 searchCity("London");
-displayForecast();
