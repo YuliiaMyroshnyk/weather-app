@@ -53,18 +53,19 @@ function displayForecast(response) {
             <div class="forecast-humidity">
               <img src="images/rain_drop.png" class="rain-drop" /><span class="forecast-humidity"> ${Math.round(
                 forecastDay.temperature.humidity
-              )}° </span>
+              )}% </span>
             </div>
+            <div class="forecast-img">
             <img
               src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
                 forecastDay.condition.icon
               }.png"
-            />
+            /> </div>
 
             <div class="weather-forecast-temperatures">
               <span class="weather-forecast-temperature-max"> ${Math.round(
                 forecastDay.temperature.maximum
-              )}° </span>
+              )}° </span>|
               <span class="weather-forecast-temperature-min"> ${Math.round(
                 forecastDay.temperature.minimum
               )}° </span>
@@ -158,39 +159,10 @@ function currentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
-function showFahrenheitTemp(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#currentTemp");
-
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-
-  let fahrenheitTemp = (celciusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
-}
-
-function showCelsiusTemp(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#currentTemp");
-
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-
-  temperatureElement.innerHTML = Math.round(celciusTemperature);
-}
-
-let celciusTemperature = null;
-
 let currentButton = document.querySelector("#current-weather-button");
 currentButton.addEventListener("click", currentPosition);
 
 let form = document.querySelector("form");
 form.addEventListener("submit", search);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", showFahrenheitTemp);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", showCelsiusTemp);
 
 searchCity("London");

@@ -88,27 +88,39 @@ li:first-letter {
   height: 100px;
   width: 100px;
 }
+
 .currentWeather strong {
-  color: rgb(33, 33, 33);
+  color: #04153d;
   font-size: 50px;
   line-height: 2;
   font-weight: 400;
 }
-
 .currentWeather .units {
-  color: rgb(33, 33, 33);
+  color: #04153d;
   position: relative;
   font-size: 20px;
   top: -34px;
 }
 
-.currentWeather .active {
-  color: black;
-  cursor: default;
+.weather-forecast-date {
+  text-align: center;
+  color: #04153d;
+}
+
+.forecast-humidity {
+  text-align: center;
 }
 
 .rain-drop {
   width: 15px;
+}
+
+.weather-forecast-temperatures {
+  text-align: center;
+}
+
+.weather-forecast-temperature-min {
+  opacity: 0.8;
 }
 
 .open-source {
