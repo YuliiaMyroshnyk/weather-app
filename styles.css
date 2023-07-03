@@ -8,6 +8,11 @@ a {
   text-decoration: none;
 }
 
+form {
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   display: block;
   margin: 0 auto;
@@ -113,6 +118,11 @@ li:first-letter {
 
 .rain-drop {
   width: 15px;
+}
+
+#forecast-icon {
+  display: block;
+  margin: 0 auto;
 }
 
 .weather-forecast-temperatures {

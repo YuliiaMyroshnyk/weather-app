@@ -59,7 +59,7 @@ function displayForecast(response) {
             <img
               src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
                 forecastDay.condition.icon
-              }.png"
+              }.png" width="80px" id="forecast-icon"
             /> </div>
 
             <div class="weather-forecast-temperatures">
