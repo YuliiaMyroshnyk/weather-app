@@ -16,7 +16,7 @@ form {
 .container {
   display: block;
   margin: 0 auto;
-  margin-top: 10px;
+  margin-top: 30px;
   background: #ebfffa;
   width: 60%;
   border: 2px solid #aeddfc;
@@ -25,9 +25,9 @@ form {
 }
 
 .search {
-  margin-top: 20px;
+  margin-top: 30px;
   background-color: #4cb3f7;
-  padding: 10px 10px 10px 10px;
+  padding: 15px 10px 15px 10px;
   border-radius: 15px;
   border: 2px solid #aeddfc;
   box-shadow: 10px 10px 20px rgba(28, 173, 184, 0.2);
@@ -37,7 +37,7 @@ form {
   background-color: #ffffff;
   border: 2px solid #aeddfc;
   color: #044891;
-  width: 50%;
+  width: 70%;
 }
 #city-search-input:focus {
   outline: none;
@@ -60,7 +60,7 @@ input::placeholder {
 }
 
 #currentCity {
-  margin-top: 10px;
+  margin-top: 15px;
   margin-left: 30px;
   margin-bottom: 0px;
   color: #0a2770;
@@ -90,6 +90,7 @@ li:first-letter {
 
 .currentWeather img {
   margin-right: 5px;
+  margin-left: 30px;
   height: 100px;
   width: 100px;
 }
