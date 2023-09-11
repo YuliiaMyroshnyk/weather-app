@@ -18,7 +18,7 @@ form {
   margin: 0 auto;
   margin-top: 30px;
   background: #ebfffa;
-  width: 60%;
+  width: 70%;
   border: 2px solid #aeddfc;
   border-radius: 20px;
   box-shadow: 10px 10px 20px rgba(28, 173, 184, 0.2);
@@ -88,9 +88,12 @@ li:first-letter {
   text-transform: capitalize;
 }
 
+#todayTemp {
+  display: grid;
+  justify-content: center;
+}
+
 .currentWeather img {
-  margin-right: 5px;
-  margin-left: 30px;
   height: 100px;
   width: 100px;
 }
@@ -108,6 +111,9 @@ li:first-letter {
   top: -34px;
 }
 
+#todayIndexes {
+  text-align: center;
+}
 .weather-forecast-date {
   text-align: center;
   color: #04153d;
@@ -126,6 +132,10 @@ li:first-letter {
   margin: 0 auto;
 }
 
+#forecast {
+  margin-bottom: 30px;
+}
+
 .weather-forecast-temperatures {
   text-align: center;
 }
@@ -138,4 +148,84 @@ li:first-letter {
   display: block;
   text-align: center;
   margin-top: 15px;
+}
+
+@media (max-width: 850px) {
+  .container {
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+    background: #ebfffa;
+    width: 95%;
+    border: 2px solid #aeddfc;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px rgba(28, 173, 184, 0.2);
+  }
+
+  .search {
+    margin-top: 15px;
+    background-color: #4cb3f7;
+    padding: 10px 10px 10px 10px;
+    border-radius: 15px;
+    border: 2px solid #aeddfc;
+    box-shadow: 10px 10px 20px rgba(28, 173, 184, 0.2);
+  }
+
+  #currentCity {
+    text-align: center;
+    margin-bottom: 0px;
+    color: #0a2770;
+  }
+
+  #country {
+    text-align: center;
+    color: #0a2770;
+  }
+
+  #todayTemp {
+    margin-top: auto;
+  }
+
+  .currentWeather img {
+    height: 80px;
+    width: 80px;
+  }
+
+  .currentWeather strong {
+    color: #04153d;
+    font-size: 45px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .currentWeather .units {
+    color: #04153d;
+    position: relative;
+    font-size: 20px;
+    top: -20px;
+  }
+
+  #todayIndexes {
+    margin-top: 0;
+  }
+
+  #forecast {
+    margin-bottom: 15px;
+  }
+
+  .weather-forecast-date {
+    margin-top: 10px;
+  }
+
+  .open-source {
+    margin-bottom: 15px;
+  }
+
+  #current-weather-button {
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  .search-button {
+    font-size: 15px;
+  }
 }
